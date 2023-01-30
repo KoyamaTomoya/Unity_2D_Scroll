@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class GameChanger : MonoBehaviour
 {
-    private const int MAX_FLOOR_NUM = 30;
-    private const int MAX_EASY_FLOOR = 10;
-    private const int MAX_NORMAL_FLOOR = 20;
+    public const int MAX_FLOOR_NUM = 30;
+    public const int MAX_EASY_FLOOR = 10;
+    public const int MAX_NORMAL_FLOOR = 20;
 
     private enum BG_NUM
     {
@@ -23,6 +23,7 @@ public class GameChanger : MonoBehaviour
     [SerializeField]
     private bool Test_Mode;
 
+    // テスト用 階層固定変数
     [SerializeField]
     private int T_setFloor;
 
@@ -44,7 +45,7 @@ public class GameChanger : MonoBehaviour
     // フェード用フラグ
     private bool once = true;
 
-    // フロア番号
+    // フロア番号 テスト用public
     public int floorNumber;
 
     // Start is called before the first frame update
@@ -60,11 +61,11 @@ public class GameChanger : MonoBehaviour
         }
         else
         {
-            // 選択されたフロアナンバーを取得(直接ゲームシーンを起動する場合はコメントアウト)
             floorNumber = GameObject.Find("SelectData").GetComponent<SelectManager>().GetFloorNumber();
         }
 
         // 選択されたフロアナンバーを取得(直接ゲームシーンを起動する場合はコメントアウト)
+        // ※テスト不要時に上のifを消して、↓のこれだけにする
         //floorNumber = GameObject.Find("SelectData").GetComponent<SelectManager>().GetFloorNumber();
 
 
@@ -125,5 +126,11 @@ public class GameChanger : MonoBehaviour
                 once = false;
             }
         }
+    }
+
+    public int GetFloorNum()
+    {
+        // テスト用階層固定変数を渡す
+        return T_setFloor;
     }
 }

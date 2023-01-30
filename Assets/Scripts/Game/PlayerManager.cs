@@ -18,6 +18,16 @@ public class PlayerManager : MonoBehaviour
     [SerializeField]
     private StartCounter sc;
 
+    [SerializeField]
+    private GameChanger gc;
+
+    [SerializeField]
+    private GameObject angel;
+    [SerializeField]
+    private GameObject holy_Sircle;
+    [SerializeField]
+    private GameObject devil;
+
     // スコア
     public int score;
 
@@ -31,9 +41,35 @@ public class PlayerManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        int currentFloor = gc.GetFloorNum();
+
         score = 0;
         clear = false;
-        //transform.position = startPlayerPos;
+
+        // 階層に応じてプレイヤーのテクスチャを変更       
+        // 0-10 Easy
+        if (currentFloor >= 0 && currentFloor <= GameChanger.MAX_EASY_FLOOR)
+        {
+            angel.SetActive(true);
+            devil.SetActive(false);
+        }
+
+        // 11-20 Normal
+        if (currentFloor >= GameChanger.MAX_EASY_FLOOR + 1 &&
+            currentFloor <= GameChanger.MAX_NORMAL_FLOOR)
+        {
+            devil.SetActive(false);
+            angel.SetActive(true);
+            holy_Sircle.SetActive(false);
+        }
+
+        // 21-30 Hard
+        if (currentFloor >= GameChanger.MAX_NORMAL_FLOOR + 1 &&
+            currentFloor <= GameChanger.MAX_FLOOR_NUM)
+        {
+            devil.SetActive(true);
+            angel.SetActive(false);
+        }
     }
 
     // Update is called once per frame

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CameraScroll : MonoBehaviour
 {
-    // カメラスクロール速度　基本-2.0  拘束-50
+    // カメラスクロール速度　基本-2.0  高速-50
     private const float MAX_SCROLL_SPEED = -2.0f;
 
     // スクロールの最大値
